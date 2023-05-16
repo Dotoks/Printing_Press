@@ -2,7 +2,7 @@ package org.example.Models.Employees;
 
 public class Operators extends Employee {
     @Override
-    public Integer getSalary() {
+    public Double getSalary() {
         return super.getSalary();
     }
 
