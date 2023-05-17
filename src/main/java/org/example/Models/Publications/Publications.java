@@ -20,7 +20,7 @@ public class Publications {
     public PageSize pageSize;
 
     public Double getPrice(){
-        return this.paperType.getPrice(this.pageSize);
+        return this.paperType.getPrice(this.pageSize) * this.numberOfPages;
     }
 
     public String getTitle() {

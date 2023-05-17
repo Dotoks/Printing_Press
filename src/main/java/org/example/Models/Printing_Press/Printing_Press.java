@@ -1,10 +1,13 @@
 package org.example.Models.Printing_Press;
 
+import org.example.Enums.PageSize;
+import org.example.Enums.PaperType;
 import org.example.Models.Employees.Employee;
 import org.example.Models.Employees.Managers;
 import org.example.Models.Employees.Operators;
 import org.example.Models.Publications.Publications;
 
+import java.awt.print.Paper;
 import java.util.List;
 import java.util.Set;
 
@@ -12,37 +15,72 @@ public class Printing_Press {
 
     Set<Employee> employeeList;
     List<Publications> publicationsList;
-
     List<Printing_Press> printingPresses;
+
+    public String name;
     public Integer totalIncome;
 
     public Double salaryExpenses;
 
     public Double materialsExpenses;
 
-    public Printing_Press(Integer totalIncome, Double salaryExpenses, Double materialsExpenses, Integer expectedIncome) {
+    public Integer paperBought;
+
+    public Double paperExpenses;
+
+    public Integer goalPerDay;
+
+    public Printing_Press(String name, Integer totalIncome,  Integer expectedIncome, Integer paperBought) {
+        this.name = name;
         this.totalIncome = totalIncome;
-        this.salaryExpenses = salaryExpenses;
-        this.materialsExpenses = materialsExpenses;
         this.expectedIncome = expectedIncome;
+        this.paperBought = paperBought;
     }
 
     public Set<Employee> getEmployeeList() {
         return employeeList;
     }
 
+    public void addPublication(Publications publication){
+        publicationsList.add(publication);
+    }
+
     public Integer getTotalIncome() {
         return totalIncome;
+    }
+
+    public void buyPaper(Integer totalPaper, PaperType paperType, PageSize pageSize){
+        this.paperBought += totalPaper;
+
+        this.paperExpenses += totalPaper * paperType.getPrice(pageSize);
     }
 
     public Integer getExpectedIncome() {
         return expectedIncome;
     }
 
+    public Double getPrintingPressIncome(){
+        double income = 0;
+        int publicationsBought = 0;
+        for (Publications publication:
+             this.publicationsList) {
+            publicationsBought++;
+            if(publicationsBought > goalPerDay){
+                income += publication.getPrice() * 0.9;
+            }
+            else{
+                income += publication.getPrice();
+            }
+
+
+        }
+        return income;
+    }
+
     public Integer expectedIncome;
 
-    public Double getMaterialsExpenses() {
-        return materialsExpenses;
+    public Double getPaperExpenses() {
+        return this.paperExpenses;
     }
 
     public Double getSalaryExpenses() {
@@ -63,5 +101,11 @@ public class Printing_Press {
         return this.publicationsList.iterator().next().getPrice();
     }
 
+    public List<Publications> getPublicationsList() {
+        return publicationsList;
+    }
 
+    public List<Printing_Press> getPrintingPresses() {
+        return printingPresses;
+    }
 }
