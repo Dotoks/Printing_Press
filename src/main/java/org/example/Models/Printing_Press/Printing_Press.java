@@ -6,11 +6,14 @@ import org.example.Models.Employees.Operators;
 import org.example.Models.Publications.Publications;
 
 import java.util.List;
+import java.util.Set;
 
 public class Printing_Press {
 
-    List<Employee> employeeList;
+    Set<Employee> employeeList;
     List<Publications> publicationsList;
+
+    List<Printing_Press> printingPresses;
     public Integer totalIncome;
 
     public Double salaryExpenses;
@@ -24,7 +27,7 @@ public class Printing_Press {
         this.expectedIncome = expectedIncome;
     }
 
-    public List<Employee> getEmployeeList() {
+    public Set<Employee> getEmployeeList() {
         return employeeList;
     }
 
