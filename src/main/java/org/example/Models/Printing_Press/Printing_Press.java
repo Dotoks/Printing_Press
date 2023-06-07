@@ -7,7 +7,8 @@ import org.example.Models.Employees.Managers;
 import org.example.Models.Employees.Operators;
 import org.example.Models.Publications.Publications;
 
-import java.awt.print.Paper;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ public class Printing_Press {
 
     Set<Employee> employeeList;
     List<Publications> publicationsList;
-    List<Printing_Press> printingPresses;
+    List<Printing_Machine> printingMachines;
 
     public String name;
     public Integer totalIncome;
@@ -30,12 +31,22 @@ public class Printing_Press {
 
     public Integer goalPerDay;
 
-    public Printing_Press(String name, Integer totalIncome,  Integer expectedIncome, Integer paperBought) {
+    public Printing_Press(String name, Integer totalIncome,  Integer expectedIncome, Integer paperBought, Integer goalPerDay) {
         this.name = name;
         this.totalIncome = totalIncome;
         this.expectedIncome = expectedIncome;
         this.paperBought = paperBought;
+        this.goalPerDay = goalPerDay;
+        this.publicationsList = new ArrayList<>();
+        this.employeeList = new HashSet<>();
+        this.printingMachines = new ArrayList<>();
+        this.paperExpenses = 0.0;
     }
+
+    public void addEmployee(Employee e){
+        employeeList.add(e);
+    }
+
 
     public Set<Employee> getEmployeeList() {
         return employeeList;
@@ -105,7 +116,10 @@ public class Printing_Press {
         return publicationsList;
     }
 
-    public List<Printing_Press> getPrintingPresses() {
-        return printingPresses;
+    public void addPrintingMachine(Printing_Machine printingMachine){
+        this.printingMachines.add(printingMachine);
+    }
+    public List<Printing_Machine> getPrintingMachines() {
+        return this.printingMachines;
     }
 }
